@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:debug
+    args: 
+    - "--context=dir:///Workspace"
+    - "--dockerfile=/Workspace/Dockerfile"
+    - "--insecure"
+    - "--insecure-pull"
+    - "--skip-tls-verify"
+    - "--skip-tls-verify-pull"
+    - "--insecure-registry=10-0-10-50.sslip.io:5000"
+    - "--destination=10-0-10-50.sslip.io:5000/company-site:v1"
+    volumeMounts:
+    - mountPath: "/Workspace"
+      name: context
+  restartPolicy: Never
+  initContainers:
+  - name: git
+    image: alpine/git
+    args: ["clone", "--branch", "dev", "http://gitea.10-0-10-50.sslip.io/gitea_admin/360ace.git", "/Workspace"]
+    volumeMounts:
+    - mountPath: "/Workspace"
+      name: context
+  volumes:
+  - name: context
+    emptyDir: {}
+
