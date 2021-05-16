@@ -8,13 +8,13 @@ spec:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug
     args:
-    - "--context=https://github.com/adekoyadapo/360ace.git"
-    - "--dockerfile=/Workspace/Dockerfile"
+    - "--context=git://github.com/adekoyadapo/360ace.git"
+    - "--git=branch=dev"
+    - "--dockerfile=Dockerfile"
     - "--insecure"
     - "--insecure-pull"
     - "--skip-tls-verify"
     - "--skip-tls-verify-pull"
     - "--insecure-registry=10-0-10-180.sslip.io:5000"
-    - "--destination=10-0-10-180.sslip.io:5000/company-site:v1"
-    - "--git=branch=dev"
+    - "--destination=10-0-10-180.sslip.io:5000/360ace:v1"
   restartPolicy: Never
