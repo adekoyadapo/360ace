@@ -11,4 +11,4 @@ Currently the site is under construction and built into an nginx container deplo
 ## Current Improvements
 
 - Use of [kaniko](https://github.com/GoogleContainerTools/kaniko) as part of CI for container build
-- Improvement with CICD with helm templates and fluxcd
+- Improvement with CICD with helm templates and fluxcd or AgroCD after local tests
