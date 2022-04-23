@@ -139,8 +139,12 @@ const sr = ScrollReveal({
 
 /*=============== HOME SWIPER ===============*/
 let homeSwiper = new Swiper(".home-swiper", {
-    spaceBetween: 5,
+    spaceBetween: 30,
     loop: 'true',
+    autoplay: {
+        delay: 7500,
+        disableOnInteraction: false,
+      },
     
     pagination: {
         el: ".swiper-pagination",
@@ -157,9 +161,6 @@ let newSwiper = new Swiper(".new-swiper", {
 });
 
 sr.reveal(`.home-swiper, .new-swiper, .newsletter__container`)
-sr.reveal(`.home__data`)
-sr.reveal(`.home__img`, { delay: 500 })
-sr.reveal(`.home__social`, { delay: 600 })
 sr.reveal(`.about__img, .contact__box`, { origin: 'left' })
 sr.reveal(`.about__data, .contact__form`, { origin: 'right' })
 sr.reveal(`.steps__card, .product__card, .questions__group, .footer`, { interval: 100 })
