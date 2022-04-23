@@ -136,16 +136,25 @@ const sr = ScrollReveal({
     // reset: true
 })
 
+
 /*=============== HOME SWIPER ===============*/
 let homeSwiper = new Swiper(".home-swiper", {
-    spaceBetween: 30,
+    spaceBetween: 5,
     loop: 'true',
-
+    
     pagination: {
         el: ".swiper-pagination",
         clickable: true,
-    },
-})
+      },
+});
+
+/*=============== NEW SWIPER ===============*/
+let newSwiper = new Swiper(".new-swiper", {
+    centeredSlides: true,
+    slidesPerView: "auto",
+    loop: 'true',
+    spaceBetween: 16,
+});
 
 sr.reveal(`.home-swiper, .new-swiper, .newsletter__container`)
 sr.reveal(`.home__data`)
