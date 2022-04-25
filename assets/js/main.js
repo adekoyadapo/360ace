@@ -161,6 +161,6 @@ let newSwiper = new Swiper(".new-swiper", {
 });
 
 sr.reveal(`.home-swiper, .new-swiper, .newsletter__container`)
-sr.reveal(`.about__img, .contact__box`, { origin: 'left' })
+sr.reveal(`.about__img, .tech, .contact__box`, { origin: 'left' })
 sr.reveal(`.about__data, .contact__form`, { origin: 'right' })
-sr.reveal(`.steps__card, .whatwedo__card, .whatwedo__group, .footer`, { interval: 100 })
+sr.reveal(`.steps__card, .tech, .whatwedo__card, .whatwedo__group, .footer`, { interval: 100 })
