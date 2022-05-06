@@ -183,9 +183,12 @@ the website, in dark theme
 }
 
 .dark-theme .marquee {
-    color: var(--first-color-light);
+    color: var(--first-color-alt);
 }
 
+.dark-theme .marquee li{
+    color: var(--first-color-alt);
+}
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 
