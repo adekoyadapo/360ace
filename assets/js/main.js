@@ -101,6 +101,8 @@ window.addEventListener('scroll', scrollUp)
 const themeButton = document.getElementById('theme-button')
 const darkTheme = 'dark-theme'
 const iconTheme = 'ri-sun-line'
+const recaptcha = document.querySelector('.g-recaptcha')
+
 
 // Previously selected topic (if user selected)
 const selectedTheme = localStorage.getItem('selected-theme')
@@ -125,7 +127,12 @@ themeButton.addEventListener('click', () => {
         // We save the theme and the current icon that the user chose
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
+    $(recaptcha).attr("data-theme", getCurrentTheme);
 })
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    recaptcha.setAttribute("data-theme", selectedTheme );
+  });
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
@@ -162,5 +169,94 @@ let newSwiper = new Swiper(".new-swiper", {
 
 sr.reveal(`.home-swiper, .new-swiper, .newsletter__container`)
 sr.reveal(`.about__img, .tech, .contact__box`, { origin: 'left' })
-sr.reveal(`.about__data, .contact__form`, { origin: 'right' })
+sr.reveal(`.about__data, .contact__form, .marquee`, { origin: 'right' })
 sr.reveal(`.steps__card, .tech, .whatwedo__card, .whatwedo__group, .footer`, { interval: 100 })
+
+
+/*=============== MARQUEE ===============*/
+const root = document.documentElement;
+const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+const marqueeContent = document.querySelector("ul.marquee-content");
+
+root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+for(let i=0; i<marqueeElementsDisplayed; i++) {
+  marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+}
+
+/*=============== MAIL SEND ===============*/
+const form = document.querySelector('.contact__form');
+
+const inputs = document.querySelector('.contact__form');
+
+function sendMsg(e){
+    e.preventDefault();
+
+    const subject = document.querySelector('.subject'),
+          email = document.querySelector('.email'),
+          message = document.querySelector('.message');
+
+        const email_ = (inputs.elements["email"].value).trim()
+        const msg_ = (inputs.elements["message"].value.trim())
+        const subject_ = (inputs.elements["subject"].value).trim()
+
+        if (!subject_.length > 0 || !email_.length > 0 || !msg_.length > 0) {
+            swal({
+                title: "All fields are mandatory!",
+                text: "Please fill out your information",
+                icon: "error",
+                timer: 5000
+            });
+            return
+        }
+
+    Email.send({
+        Host : "smtp.mailtrap.io",
+        Username : "014ee49e49fd5d",
+        Password : "9220d06b94f3ab",
+        To : "dapphyuk@gmail.com",
+        From : email.value,
+        Subject : subject.value,
+        Body : message.value
+    }).then(
+      message => swal({
+          title: "Email Sent!", 
+          text: "Thanks for contacting Us", 
+          icon: "success",
+          timer: 3000
+        })
+    );
+}
+
+// function validateEmail(inputText) {
+//     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+//     if (inputText.value.match(mailformat)) {
+//         document.contact__form.email.focus();
+//         return true;
+//     } else {
+//         swal({
+//             title: "OOPS! invalid Email!",
+//             text: "Please check and try again",
+//             icon: "error",
+//             timer: 5000
+//         })
+//         document.contact__form.email.focus();
+//         return false;
+//     }
+// };
+
+/*=============== CAPTCHA ===============*/
+
+function onSubmit(token) {
+    document.getElementById('.contact__form').submit();
+  }
+
+function captchaVerified (){
+    var registerBtn = document.querySelector('#send_message');
+    registerBtn.removeAttribute('disabled');
+}
+
+function captchaExpired (){
+    var registerBtn = document.querySelector('#send_message');
+    registerBtn.attributes.add('disabled');
+}

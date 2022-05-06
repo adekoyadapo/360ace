@@ -12,6 +12,9 @@
     <!--=============== FAVICON ===============-->
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
+    <!--=============== FONT AWESOME ===============-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
     <!--=============== REMIX ICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
@@ -23,6 +26,14 @@
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!--=============== MAIN JS ===============-->
+    <script src="assets/js/main.js" defer></script>
+
+    <!--=============== CAPTCHA ===============-->
+    <script src='//www.google.com/recaptcha/api.js' async defer></script>
+    <!-- <script src="https://www.google.com/recaptcha/api.js?render=6Lfll7gfAAAAAOOT72VcoUYxMgSVBqrtGN2Tzz7q"></script> -->
+
     <title>360ace Tech</title>
 </head>
 
@@ -252,6 +263,64 @@
                     </a>
                 </div>
             </div>
+            <div class="marquee">
+                <ul class="marquee-content">
+                  <li><i class="fab fa-aws"></i></li>
+                  <li><i class="iconify" data-icon="cib:google-cloud"></i></li>
+                  <li><i class="iconify" data-icon="codicon:azure"></i></li>
+                  <!-- <li><i class="iconify" data-icon="logos:ibm"></i></li> -->
+                  <li><i class="fab fa-git"></i></li>
+                  <li><i class="iconify" data-icon="bi:github"></i></li>
+                  <li><i class="iconify" data-icon="cib:gitlab"></i></li>
+                  <li><i class="iconify" data-icon="cib:gitea"></i></li>
+                  <li><i class="iconify" data-icon="cib:bitbucket"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:buildkite"></i></li>
+                  <li><i class="iconify" data-icon="logos:github-actions"></i></li>
+                  <li><i class="iconify" data-icon="cib:bamboo"></i></li>
+                  <li><i class="iconify" data-icon="cib:circleci"></i></li>
+                  <li><i class="iconify" data-icon="cib:travisci"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:spinnaker"></i></li>
+                  <li><i class="iconify" data-icon="logos:argo-icon"></i></li>
+                  <li><i class="iconify" data-icon="cib:jenkins"></i></li>
+                  <li><i class="iconify" data-icon="cib:kubernetes"></i></li>
+                  <li><i class="fab fa-dev"></i></li>
+                  <li><i class="iconify" data-icon="mdi:api"></i></li>
+                  <li><i class="iconify" data-icon="clarity:command-line"></i></li>
+                  <li><i class="iconify" data-icon="entypo:network"></i></li>
+                  <li><i class="iconify" data-icon="bi:server"></i></li>
+                  <li><i class="iconify" data-icon="ant-design:cloud-server-outlined"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:prometheus"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:splunk"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:datadog"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:newrelic"></i></li>
+                  <li><i class="iconify" data-icon="cib:grafana"></i></li>
+                  <li><i class="iconify" data-icon="material-symbols:monitoring"></i></li>
+                  <li><i class="iconify" data-icon="cib:php"></i></li>
+                  <li><i class="iconify" data-icon="cib:ansible"></i></li>
+                  <li><i class="iconify" data-icon="cib:terraform"></i></li>
+                  <li><i class="fab fa-node"></i></li>
+                  <li><i class="fab fa-java"></i></li>
+                  <li><i class="fab fa-docker"></i></li>
+                  <li><i class="iconify" data-icon="fa:linux"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:dotnet"></i></li>
+                  <li><i class="bx bxl-python"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:puppet"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:macos"></i></li>
+                  <li><i class="iconify" data-icon="cib:redhat"></i></li>
+                  <li><i class="iconify" data-icon="cib:ubuntu"></i></li>
+                  <li><i class="bx bxl-postgresql"></i></li>
+                  <li><i class="iconify" data-icon="cib:mysql"></i></li>
+                  <li><i class="iconify" data-icon="cib:cassandra"></i></li>
+                  <li><i class="bx bxl-mongodb"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:gnubash"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:rancher"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:dell"></i></li>
+                  <li><i class="iconify" data-icon="simple-icons:raspberrypi"></i></li>
+                  <li><i class="iconify" data-icon="cib:cisco"></i></li>
+                  <li><i class="iconify" data-icon="cib:windows"></i></li>
+                  <li><i class="iconify" data-icon="cib:hp"></i></li>
+                </ul>
+              </div>
         </section>
         <!--==================== whatwedo ====================-->
         <section class="whatwedo section" id="whatwedo">
@@ -458,7 +527,7 @@
         </section>
 
         <!--==================== CONTACT ====================-->
-        <section class="contact section container" id="contact">
+        <section class="contact section container" id="contact" onload='document.contact__form.email.focus()'>
             <div class="contact__container grid">
                 <div class="contact__box">
                     <h2 class="section__title">
@@ -477,25 +546,33 @@
                     </div>
                 </div>
 
-                <form action="" class="contact__form">
+                <form action="#" class="contact__form" name="contact__form" id="contact__form">
                     <div class="contact__inputs">
                         <div class="contact__content">
-                            <input type="email" placeholder=" " class="contact__input">
+                            <input type="email" name="email" placeholder=" " class="contact__input email">
                             <label for="" class="contact__label">Email</label>
                         </div>
 
                         <div class="contact__content">
-                            <input type="text" placeholder=" " class="contact__input">
+                            <input type="text" name="subject" placeholder=" " class="contact__input subject">
                             <label for="" class="contact__label">Subject</label>
                         </div>
 
                         <div class="contact__content contact__area">
-                            <textarea name="message" placeholder=" " class="contact__input"></textarea>
+                            <textarea name="message" placeholder=" " class="contact__input message"></textarea>
                             <label for="" class="contact__label">Message</label>
                         </div>
                     </div>
+                    
+                    <div class="contact__area">
+                        <!-- Add the sitekey in data-sitekey attribute here -->
+                        <div class="g-recaptcha" data-theme="light" data-size="normal" id="recaptcha"
+                            data-callback="captchaVerified" data-expired-callback="captchaExpired"
+                            data-sitekey="6LdGLLsfAAAAAJ1JAW1R3xY035CugsvzVKP5uE-O">
+                        </div>
+                    </div>
 
-                    <button class="button button--flex">
+                    <button class="button button--flex contact_us" onclick="validateEmail(document.contact__form.email)" id="send_message" disabled>
                             Send Message
                             <i class="ri-arrow-right-up-line button__icon"></i>
                         </button>
@@ -512,7 +589,7 @@
                     <span class="footer__logo-img"></span> 360ace.
                 </a>
 
-                <p class="footer__description">Connect <br> With Us.</p>
+                <p class="footer__description">Connect With Us.</p>
 
                 <div class="footer__social">
                     <a href="https://www.linkedin.com/company/360ace" target="_blank" class="footer__social-link">
@@ -568,9 +645,14 @@
 
     <!--=============== SWIPER JS ===============-->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    
+    <!--=============== SMTPJS ===============-->
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
 
-    <!--=============== MAIN JS ===============-->
-    <script src="assets/js/main.js"></script>
+    <!--=============== SWEET ALERT ===============-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </body>
 
 </html>
