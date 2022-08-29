@@ -31,7 +31,7 @@
     <script src="assets/js/main.js" defer></script>
 
     <!--=============== CAPTCHA ===============-->
-    <script src='//www.google.com/recaptcha/api.js' async defer></script>
+    <!-- <script src='//www.google.com/recaptcha/api.js' async defer></script> -->
     <!-- <script src="https://www.google.com/recaptcha/api.js?render=6Lfll7gfAAAAAOOT72VcoUYxMgSVBqrtGN2Tzz7q"></script> -->
 
     <title>360ace Tech</title>
@@ -494,8 +494,8 @@
 
                         <div class="whatwedo__content">
                             <p class="whatwedo__description">
-                                Information technology infrastructure is the set of information technology components that are the foundation of an IT service; typically physical components, but also various software and network components. We are focused on getting your infrastructure
-                                architectured to best practice(s).
+                                Planning out the continuous deployment and delivery, is our intent to ensure that your development process ends in the integration
+                                of deployment process to the required environments.
                             </p>
                         </div>
                     </div>
@@ -573,15 +573,15 @@
                         </div>
                     </div>
                     
-                    <div class="contact__area">
-                        <!-- Add the sitekey in data-sitekey attribute here -->
+                    <!-- <div class="contact__area">
+
                         <div class="g-recaptcha" data-theme="light" data-size="normal" id="recaptcha"
                             data-callback="captchaVerified" data-expired-callback="captchaExpired"
                             data-sitekey="6LdGLLsfAAAAAJ1JAW1R3xY035CugsvzVKP5uE-O">
                         </div>
-                    </div>
+                    </div> -->
 
-                    <button class="button button--flex contact_us" id="send_message" disabled>
+                    <button class="button button--flex contact_us" id="send_message" onclick="sendEmail()">
                             Send Message
                             <i class="ri-arrow-right-up-line button__icon"></i>
                         </button>

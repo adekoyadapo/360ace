@@ -130,9 +130,9 @@ themeButton.addEventListener('click', () => {
     $(recaptcha).attr("data-theme", getCurrentTheme);
 })
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    recaptcha.setAttribute("data-theme", selectedTheme );
-  });
+// document.addEventListener('DOMContentLoaded', (event) => {
+//     recaptcha.setAttribute("data-theme", selectedTheme );
+//   });
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
@@ -185,49 +185,65 @@ for(let i=0; i<marqueeElementsDisplayed; i++) {
 }
 
 /*=============== MAIL SEND ===============*/
-const form = document.querySelector('.contact__form');
+// const form = document.querySelector('.contact__form');
 
-const inputs = document.querySelector('.contact__form');
+// const inputs = document.querySelector('.contact__form');
 
-function sendMsg(e){
-    e.preventDefault();
+// function sendMsg(e){
+//     e.preventDefault();
 
-    const subject = document.querySelector('.subject'),
-          email = document.querySelector('.email'),
-          message = document.querySelector('.message');
+//     const subject = document.querySelector('.subject'),
+//           email = document.querySelector('.email'),
+//           message = document.querySelector('.message');
 
-        const email_ = (inputs.elements["email"].value).trim()
-        const msg_ = (inputs.elements["message"].value.trim())
-        const subject_ = (inputs.elements["subject"].value).trim()
+//         const email_ = (inputs.elements["email"].value).trim()
+//         const msg_ = (inputs.elements["message"].value.trim())
+//         const subject_ = (inputs.elements["subject"].value).trim()
 
-        if (!subject_.length > 0 || !email_.length > 0 || !msg_.length > 0) {
-            swal({
-                title: "All fields are mandatory!",
-                text: "Please fill out your information",
-                icon: "error",
-                timer: 5000
-            });
-            return
-        }
+//         if (!subject_.length > 0 || !email_.length > 0 || !msg_.length > 0) {
+//             swal({
+//                 title: "All fields are mandatory!",
+//                 text: "Please fill out your information",
+//                 icon: "error",
+//                 timer: 5000
+//             });
+//             return
+//         }
 
+//     Email.send({
+//         Host : "smtp.mailtrap.io",
+//         Username : "3a63deaa1ee15f",
+//         Password : "6ca80ab87dbe5a",
+//         To : "dapphyuk@gmail.com",
+//         From : email.value,
+//         Subject : subject.value,
+//         Body : message.value
+//     }).then(
+//       message => swal({
+//           title: "Email Sent!", 
+//           text: "Thanks for contacting Us", 
+//           icon: "success",
+//           timer: 3000,
+//         })
+//     );
+//     document.getElementById('contact__form').reset();
+// }
+
+function sendEmail() {
     Email.send({
         Host : "smtp.mailtrap.io",
         Username : "3a63deaa1ee15f",
         Password : "6ca80ab87dbe5a",
         To : "dapphyuk@gmail.com",
-        From : email.value,
-        Subject : subject.value,
-        Body : message.value
+        From : "test@demo.com",
+        Subject : "demo",
+        Body : "<html><h2>Header</h2><strong>Bold text</strong><br></br><em>Italic</em></html>"
     }).then(
-      message => swal({
-          title: "Email Sent!", 
-          text: "Thanks for contacting Us", 
-          icon: "success",
-          timer: 3000,
-        })
+      message => alert(message)
     );
-    document.getElementById('contact__form').reset();
-}
+    }
+
+
 
 // function validateEmail(inputText) {
 //     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -246,19 +262,19 @@ function sendMsg(e){
 //     }
 // };
 
-form.addEventListener('submit', sendMsg);
+// form.addEventListener('submit', sendMsg);
 /*=============== CAPTCHA ===============*/
 
-function onSubmit(token) {
-    document.getElementById('contact__form').submit();
-  }
+// function onSubmit(token) {
+//     document.getElementById('contact__form').submit();
+//   }
 
-function captchaVerified (){
-    var registerBtn = document.querySelector('#send_message');
-    registerBtn.removeAttribute('disabled');
-}
+// function captchaVerified (){
+//     var registerBtn = document.querySelector('#send_message');
+//     registerBtn.removeAttribute('disabled');
+// }
 
-function captchaExpired (){
-    var registerBtn = document.querySelector('#send_message');
-    registerBtn.attributes.add('disabled');
-}
+// function captchaExpired (){
+//     var registerBtn = document.querySelector('#send_message');
+//     registerBtn.attributes.add('disabled');
+// }
