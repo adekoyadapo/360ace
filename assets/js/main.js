@@ -212,8 +212,8 @@ function sendMsg(e){
 
     Email.send({
         Host : "smtp.mailtrap.io",
-        Username : "014ee49e49fd5d",
-        Password : "9220d06b94f3ab",
+        Username : "3a63deaa1ee15f",
+        Password : "6ca80ab87dbe5a",
         To : "dapphyuk@gmail.com",
         From : email.value,
         Subject : subject.value,
@@ -223,9 +223,10 @@ function sendMsg(e){
           title: "Email Sent!", 
           text: "Thanks for contacting Us", 
           icon: "success",
-          timer: 3000
+          timer: 3000,
         })
     );
+    document.getElementById('contact__form').reset();
 }
 
 // function validateEmail(inputText) {
@@ -245,10 +246,11 @@ function sendMsg(e){
 //     }
 // };
 
+form.addEventListener('submit', sendMsg);
 /*=============== CAPTCHA ===============*/
 
 function onSubmit(token) {
-    document.getElementById('.contact__form').submit();
+    document.getElementById('contact__form').submit();
   }
 
 function captchaVerified (){
