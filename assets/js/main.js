@@ -101,7 +101,6 @@ window.addEventListener('scroll', scrollUp)
 const themeButton = document.getElementById('theme-button')
 const darkTheme = 'dark-theme'
 const iconTheme = 'ri-sun-line'
-const recaptcha = document.querySelector('.g-recaptcha')
 
 
 // Previously selected topic (if user selected)
@@ -127,12 +126,7 @@ themeButton.addEventListener('click', () => {
         // We save the theme and the current icon that the user chose
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
-    $(recaptcha).attr("data-theme", getCurrentTheme);
 })
-
-// document.addEventListener('DOMContentLoaded', (event) => {
-//     recaptcha.setAttribute("data-theme", selectedTheme );
-//   });
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
@@ -183,98 +177,3 @@ root.style.setProperty("--marquee-elements", marqueeContent.children.length);
 for(let i=0; i<marqueeElementsDisplayed; i++) {
   marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
 }
-
-/*=============== MAIL SEND ===============*/
-// const form = document.querySelector('.contact__form');
-
-// const inputs = document.querySelector('.contact__form');
-
-// function sendMsg(e){
-//     e.preventDefault();
-
-//     const subject = document.querySelector('.subject'),
-//           email = document.querySelector('.email'),
-//           message = document.querySelector('.message');
-
-//         const email_ = (inputs.elements["email"].value).trim()
-//         const msg_ = (inputs.elements["message"].value.trim())
-//         const subject_ = (inputs.elements["subject"].value).trim()
-
-//         if (!subject_.length > 0 || !email_.length > 0 || !msg_.length > 0) {
-//             swal({
-//                 title: "All fields are mandatory!",
-//                 text: "Please fill out your information",
-//                 icon: "error",
-//                 timer: 5000
-//             });
-//             return
-//         }
-
-//     Email.send({
-//         Host : "smtp.mailtrap.io",
-//         Username : "3a63deaa1ee15f",
-//         Password : "6ca80ab87dbe5a",
-//         To : "dapphyuk@gmail.com",
-//         From : email.value,
-//         Subject : subject.value,
-//         Body : message.value
-//     }).then(
-//       message => swal({
-//           title: "Email Sent!", 
-//           text: "Thanks for contacting Us", 
-//           icon: "success",
-//           timer: 3000,
-//         })
-//     );
-//     document.getElementById('contact__form').reset();
-// }
-
-function sendEmail() {
-    Email.send({
-        Host : "smtp.mailtrap.io",
-        Username : "3a63deaa1ee15f",
-        Password : "6ca80ab87dbe5a",
-        To : "dapphyuk@gmail.com",
-        From : "test@demo.com",
-        Subject : "demo",
-        Body : "<html><h2>Header</h2><strong>Bold text</strong><br></br><em>Italic</em></html>"
-    }).then(
-      message => alert(message)
-    );
-    }
-
-
-
-// function validateEmail(inputText) {
-//     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-//     if (inputText.value.match(mailformat)) {
-//         document.contact__form.email.focus();
-//         return true;
-//     } else {
-//         swal({
-//             title: "OOPS! invalid Email!",
-//             text: "Please check and try again",
-//             icon: "error",
-//             timer: 5000
-//         })
-//         document.contact__form.email.focus();
-//         return false;
-//     }
-// };
-
-// form.addEventListener('submit', sendMsg);
-/*=============== CAPTCHA ===============*/
-
-// function onSubmit(token) {
-//     document.getElementById('contact__form').submit();
-//   }
-
-// function captchaVerified (){
-//     var registerBtn = document.querySelector('#send_message');
-//     registerBtn.removeAttribute('disabled');
-// }
-
-// function captchaExpired (){
-//     var registerBtn = document.querySelector('#send_message');
-//     registerBtn.attributes.add('disabled');
-// }

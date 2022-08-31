@@ -30,11 +30,7 @@
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js" defer></script>
 
-    <!--=============== CAPTCHA ===============-->
-    <!-- <script src='//www.google.com/recaptcha/api.js' async defer></script> -->
-    <!-- <script src="https://www.google.com/recaptcha/api.js?render=6Lfll7gfAAAAAOOT72VcoUYxMgSVBqrtGN2Tzz7q"></script> -->
-
-    <title>360ace Tech</title>
+   <title>360ace Tech</title>
 </head>
 
 <body>
@@ -536,7 +532,7 @@
         </section>
 
         <!--==================== CONTACT ====================-->
-        <section class="contact section container" id="contact" onload='document.contact__form.email.focus()'>
+        <section class="contact section container" id="contact">
             <div class="contact__container grid">
                 <div class="contact__box">
                     <h2 class="section__title">
@@ -548,44 +544,12 @@
                         <div class="contact__information">
                             <h3 class="contact__subtitle">Write us a mail at</h3>
                             <span class="contact__description">
-                                    <i class="ri-mail-line contact__icon"></i>
-                                    info@360ace.net
-                                </span>
+                                <a href="mailto:info@360ace.net" class="contact__subtitle"><i class="ri-mail-line contact__icon"></i>
+                                    info@360ace.net </a>
+                            </span>
                         </div>
                     </div>
                 </div>
-
-                <form action="#" class="contact__form" name="contact__form" id="contact__form">
-                    <div class="contact__inputs">
-                        <div class="contact__content">
-                            <input type="email" name="email" placeholder=" " class="contact__input email">
-                            <label for="" class="contact__label">Email</label>
-                        </div>
-
-                        <div class="contact__content">
-                            <input type="text" name="subject" placeholder=" " class="contact__input subject">
-                            <label for="" class="contact__label">Subject</label>
-                        </div>
-
-                        <div class="contact__content contact__area">
-                            <textarea name="message" placeholder=" " class="contact__input message"></textarea>
-                            <label for="" class="contact__label">Message</label>
-                        </div>
-                    </div>
-                    
-                    <!-- <div class="contact__area">
-
-                        <div class="g-recaptcha" data-theme="light" data-size="normal" id="recaptcha"
-                            data-callback="captchaVerified" data-expired-callback="captchaExpired"
-                            data-sitekey="6LdGLLsfAAAAAJ1JAW1R3xY035CugsvzVKP5uE-O">
-                        </div>
-                    </div> -->
-
-                    <button class="button button--flex contact_us" id="send_message" onclick="sendEmail()">
-                            Send Message
-                            <i class="ri-arrow-right-up-line button__icon"></i>
-                        </button>
-                </form>
             </div>
         </section>
     </main>
@@ -598,13 +562,6 @@
                     <span class="footer__logo-img"></span> 360ace.
                 </a>
 
-                <p class="footer__description">Connect With Us.</p>
-
-                <div class="footer__social">
-                    <a href="https://www.linkedin.com/company/360ace" target="_blank" class="footer__social-link">
-                        <i class='bx bxl-linkedin-square'></i>
-                    </a>
-                </div>
             </div>
 
             <div class="footer__content">
