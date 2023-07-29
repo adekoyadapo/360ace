@@ -104,7 +104,93 @@ body {
     /*For animation dark mode*/
 }
 
+#preloader {
+    /* Position the preloader at the center of the screen */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Set your desired background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Make sure the preloader is on top of other elements */
+  }
+  
+  .loading-container {
+    /* CSS for the loading container */
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .circle {
+    /* CSS for the spinning circle */
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-top: 4px solid #000; /* Set your desired spinner color */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    animation: spin 1s linear infinite; /* Add spinning animation */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .loading-text {
+    /* CSS for the "LOADING" text */
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Ensure the text stays stationary */
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  /* Animation keyframes for the spinning animation */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+
+.fade-in {
+    opacity: 1;
+    animation: fadeInAnimation 6s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* styles.css */
+.reveal-from-top {
+    opacity: 0;
+    transform: translateY(-200px); /* Initial position above the viewport */
+    animation: revealFromTopAnimation 5s ease-in-out forwards;
+}
+
+@keyframes revealFromTopAnimation {
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Final position at its original position */
+    }
+}
+
+
 button {
+    margin-top: 10px;
     cursor: pointer;
     border: none;
     outline: none;
