@@ -591,30 +591,6 @@
                         </div>
                     </div>
                 </div>
-
-                <form action="" class="contact__form">
-                    <div class="contact__inputs">
-                        <div class="contact__content">
-                            <input type="email" name="email" placeholder=" " class="contact__input">
-                            <label for="" class="contact__label">Email</label>
-                        </div>
-
-                        <div class="contact__content">
-                            <input type="text" name="subject" placeholder=" " class="contact__input">
-                            <label for="" class="contact__label">Subject</label>
-                        </div>
-
-                        <div class="contact__content contact__area">
-                            <textarea name="message" placeholder=" " class="contact__input"></textarea>
-                            <label for="" class="contact__label">Message</label>
-                        </div>
-                    </div>
-                    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-                    <button class="button button--flex" type="submit">
-                        Send Message
-                        <i class="ri-arrow-right-up-line button__icon"></i>
-                    </button>
-                </form>
             </div>
         </section>
     </main>
@@ -686,59 +662,6 @@
             }, 2000);
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.querySelector('.contact__form');
-
-            form.addEventListener('submit', async function (event) {
-                event.preventDefault();
-
-                // Get form data
-                const formData = new FormData(form);
-                const email = formData.get('email');
-                const subject = formData.get('subject');
-                const message = formData.get('message');
-
-                // Verify reCAPTCHA
-                const recaptchaResponse = formData.get('g-recaptcha-response');
-                const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: `secret=YOUR_RECAPTCHA_SECRET_KEY&response=${recaptchaResponse}`,
-                });
-
-                const responseData = await response.json();
-                if (!responseData.success) {
-                    alert('reCAPTCHA verification failed. Please try again.');
-                    return;
-                }
-
-                // Send email using SendGrid
-                const sendGridResponse = await fetch('https://api.sendgrid.com/v3/mail/send', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'Bearer YOUR_SENDGRID_API_KEY',
-                    },
-                    body: JSON.stringify({
-                        personalizations: [{ to: [{ email: 'info@360ace.net' }] }],
-                        from: { email: email },
-                        subject: subject,
-                        content: [{ type: 'text/plain', value: message }],
-                    }),
-                });
-
-                if (sendGridResponse.ok) {
-                    alert('Email sent successfully!');
-                    form.reset();
-                } else {
-                    alert('Failed to send email. Please try again later.');
-                }
-            });
-        });
-    </script>
-    <!--=============== CAPTCHA ===============-->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <!--=============== SCROLL REVEAL ===============-->
     <script src="assets/js/scrollreveal.min.js"></script>
@@ -746,10 +669,6 @@
 
     <!--=============== SWIPER JS ===============-->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-
-    <!--=============== SMTPJS ===============-->
-    <script src="https://smtpjs.com/v3/smtp.js">
-    </script>
 
     <!--=============== SWEET ALERT ===============-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
