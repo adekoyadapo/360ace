@@ -138,6 +138,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+
   }
   
   .loading-text {
@@ -153,6 +154,12 @@ body {
     user-select: none;
   }
   
+  .preloader__logo-img {
+    content: url("../img/logo-dark.png");
+    background-repeat: no-repeat;
+    width: 5.75rem;
+    margin-right: -19px;
+}
   /* Animation keyframes for the spinning animation */
   @keyframes spin {
     0% { transform: rotate(0deg); }
