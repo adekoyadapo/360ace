@@ -1,0 +1,99 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('.contact__form');
+  const sendButton = form.querySelector('button[type="submit"]');
+
+  // Function to validate the email format
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  // Function to check form validity and enable/disable the send button
+  function updateSendButton() {
+    const formData = new FormData(form);
+    const email = formData.get('email');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+    const isEmailValid = isValidEmail(email);
+    const isSubjectValid = subject.trim() !== '';
+    const isMessageValid = message.trim() !== '';
+    const isFormValid = isEmailValid && isSubjectValid && isMessageValid;
+    sendButton.disabled = !isFormValid;
+  }
+
+  // Add event listeners for form input elements to check validity dynamically
+  const formInputs = form.querySelectorAll('.contact__input');
+  formInputs.forEach(function (input) {
+    input.addEventListener('input', updateSendButton);
+  });
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    // Validate form fields
+    updateSendButton();
+
+    // Check if the form is valid before proceeding
+    if (sendButton.disabled) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill out all required fields.',
+      });
+      return;
+    }
+
+    // Check reCAPTCHA response
+    const formData = new FormData(form);
+    const recaptchaResponse = formData.get('g-recaptcha-response');
+
+    if (!recaptchaResponse) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please complete reCAPTCHA.',
+      });
+      return;
+    }
+
+    // Get form data
+    const email = formData.get('email');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+
+    // Send email using Cloudflare Worker
+    const cloudflareWorkerURL = 'https://360ace-sendmail.ade-000.workers.dev'; // Replace with your Cloudflare Worker URL
+
+    // Send email using SendGrid
+    const cloudflareResponse = await fetch(cloudflareWorkerURL,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          personalizations: [{ to: [{ email: 'info@360ace.net' }] }],
+          from: { email: email },
+          subject: subject,
+          content: [{ type: 'text/plain', value: message }],
+        }),
+      }
+      );
+
+    if (cloudflareResponse.ok) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Email sent successfully!',
+      });
+      form.reset(); // Clear the form
+      grecaptcha.reset(recaptchaWidgetId); // Reset reCAPTCHA
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Failed to send email. Please try again later.',
+      });
+    }
+  });
+});
