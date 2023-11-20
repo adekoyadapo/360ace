@@ -31,6 +31,10 @@
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js" defer></script>
 
+    <!--=============== SWEET ALERT ===============-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <title>360ace Tech</title>
 </head>
 
@@ -591,6 +595,30 @@
                         </div>
                     </div>
                 </div>
+
+                <form action="" class="contact__form">
+                    <div class="contact__inputs">
+                        <div class="contact__content">
+                            <input type="email" name="email" placeholder=" " class="contact__input">
+                            <label class="contact__label">Email</label>
+                        </div>
+
+                        <div class="contact__content">
+                            <input type="text" name="subject" placeholder=" " class="contact__input">
+                            <label class="contact__label">Subject</label>
+                        </div>
+
+                        <div class="contact__content contact__area">
+                            <textarea name="message" placeholder=" " class="contact__input"></textarea>
+                            <label class="contact__label">Message</label>
+                        </div>
+                    </div>
+                    <div id="recaptcha" class="g-recaptcha" data-sitekey="6LdGLLsfAAAAAJ1JAW1R3xY035CugsvzVKP5uE-O"></div>
+                    <button class="button button--flex" type="submit">
+                        Send Message
+                        <i class="ri-arrow-right-up-line button__icon"></i>
+                    </button>
+                </form>
             </div>
         </section>
     </main>
@@ -659,9 +687,11 @@
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
                 preloader.style.display = 'none';
-            }, 2000);
+            }, 500);
         });
     </script>
+    <script src="assets/js/contact.js" ></script>
+    <!--=============== CAPTCHA ===============-->
 
     <!--=============== SCROLL REVEAL ===============-->
     <script src="assets/js/scrollreveal.min.js"></script>
