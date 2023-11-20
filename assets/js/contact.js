@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.contact__form');
   const sendButton = form.querySelector('button[type="submit"]');
+  let recaptcha;
 
   // Function to validate the email format
   function isValidEmail(email) {
@@ -72,10 +73,9 @@ document.addEventListener('DOMContentLoaded', function () {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          personalizations: [{ to: [{ email: 'info@360ace.net' }] }],
-          from: { email: email },
+          email: email,
           subject: subject,
-          content: [{ type: 'text/plain', value: message }],
+          message: message,
         }),
       }
       );
@@ -87,13 +87,19 @@ document.addEventListener('DOMContentLoaded', function () {
         text: 'Email sent successfully!',
       });
       form.reset(); // Clear the form
-      grecaptcha.reset(recaptchaWidgetId); // Reset reCAPTCHA
+      grecaptcha.reset(recaptcha); // Reset reCAPTCHA
     } else {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Failed to send email. Please try again later.',
       });
+      grecaptcha.reset(recaptcha); // Reset reCAPTCHA
     }
   });
+
+  // Set a timeout to refresh the reCAPTCHA after a certain period of time
+  setTimeout(function() {
+    grecaptcha.reset(recaptcha);
+  }, 120000); // 2 minutes timeout
 });
