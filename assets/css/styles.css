@@ -868,8 +868,82 @@ body {
     font-size: var(--smaller-font-size);
     z-index: 10;
 }
+.privacy__card:hover {
+    text-decoration: underline;
+}
 
+.privacy__card__data {
+  width: 500px;
+  background-color: var(--container-color);
+  font-size: var(--small-font-size);
+  font-weight: lighter;
+  padding: 1rem 1rem;
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
+  border-radius: 1rem;
+  position: absolute;
+  left: 250px;
+  right: 0;
+  bottom: 4rem;
+  margin-inline: auto;
+  opacity: 0;
+  transition: opacity 1s 1s;
+}
 
+.privacy__card:hover .privacy__card__data {
+    animation: show-data 1s forwards;
+    opacity: 1;
+    transition: opacity .3s;
+}
+
+.privacy__card:hover {
+    animation: remove overflow 2s forwards;
+}
+
+.privacy__card:not(:hover) {
+  animation: show-overflow 2s forwards;
+}
+
+.privacy__card:not(:hover) .privacy__card__data {
+  animation: remove-data 1s forwards;
+}
+
+/* Card animation */
+@keyframes show-data {
+  50% {
+    transform: translateY(-5rem);
+  }
+  100% {
+    transform: translateY(-3rem);
+  }
+}
+
+@keyframes remove-overflow {
+  to {
+    overflow: initial;
+  }
+}
+
+@keyframes remove-data {
+  0% {
+    transform: translateY(-3rem);
+  }
+  50% {
+    transform: translateY(-5rem);
+  }
+  100% {
+    transform: translateY(.5rem);
+  }
+}
+
+@keyframes show-overflow {
+  0% {
+    overflow: initial;
+    pointer-events: none;
+  }
+  50% {
+    overflow: hidden;
+  }
+}
 /*=============== FOOTER ===============*/
 
 .footer {
@@ -1066,6 +1140,12 @@ body {
         font-size: 1.9rem;
         width: 3rem;
     }
+    
+    .privacy__card__data {
+      width: 200px;
+      left: 50px;
+      bottom: -4rem;
+    }
 }
 
 @media screen and (min-width: 320px) {
@@ -1080,6 +1160,11 @@ body {
     .marquee-content li {
         font-size: 3rem;
         width: 5rem;
+    }
+    .privacy__card__data {
+      width: 240px;
+      left: 170px;
+      bottom: -4rem;
     }
 }
 
@@ -1108,6 +1193,10 @@ body {
 
     .footer__subscribe {
         width: 400px;
+    }
+
+    .footer__container {
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .home__content {
@@ -1225,7 +1314,7 @@ body {
     }
 
     .section {
-        padding: 8rem 0 1rem;
+        padding: 5rem 0 1rem;
     }
 
     .section__title,
@@ -1234,7 +1323,7 @@ body {
     }
 
     .home__content {
-        padding-top: 15rem;
+        padding-top: 10rem;
         gap: 3rem;
     }
 
@@ -1243,7 +1332,7 @@ body {
     }
 
     .home__img {
-        height: 570px;
+        height: 400px;
         transform: translateY(-3rem);
     }
 
@@ -1356,6 +1445,11 @@ body {
     .marquee-content li {
         font-size: 4.5rem;
         width: 6rem;
+    }
+    .privacy__card__data {
+      width: 400px;
+      left: 270px;
+      bottom: -2rem;
     }
 }
 
