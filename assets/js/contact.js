@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.contact__form');
   const sendButton = form.querySelector('button[type="submit"]');
+  const privacyCheckbox = form.querySelector('input[type="checkbox"]');
   let recaptcha;
 
   // Function to validate the email format
@@ -18,7 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const isEmailValid = isValidEmail(email);
     const isSubjectValid = subject.trim() !== '';
     const isMessageValid = message.trim() !== '';
-    const isFormValid = isEmailValid && isSubjectValid && isMessageValid;
+    const isPrivacyChecked = privacyCheckbox.checked;
+    const isFormValid =
+      isEmailValid && isSubjectValid && isMessageValid && isPrivacyChecked;
     sendButton.disabled = !isFormValid;
   }
 
@@ -39,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Please fill out all required fields.',
+        text: 'Please fill out all required fields and agree to the privacy policy.',
       });
       return;
     }
@@ -66,19 +69,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const cloudflareWorkerURL = 'https://360ace-sendmail.ade-000.workers.dev'; // Replace with your Cloudflare Worker URL
 
     // Send email using SendGrid
-    const cloudflareResponse = await fetch(cloudflareWorkerURL,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          subject: subject,
-          message: message,
-        }),
-      }
-      );
+    const cloudflareResponse = await fetch(cloudflareWorkerURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        subject: subject,
+        message: message,
+      }),
+    });
 
     if (cloudflareResponse.ok) {
       Swal.fire({
